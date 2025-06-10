@@ -3,7 +3,12 @@ import streamlit as st
 st.set_page_config(page_title="Famous People Timeline", layout="wide")
 
 from utils.wikidata_utils import add_person
-from utils.data_handler import load_data, export_data_as_csv, export_data_as_json
+from utils.data_handler import (
+    load_data,
+    export_data_as_csv,
+    export_data_as_json,
+    clear_data_file,
+)
 from utils.timeline_plotter import plot_timeline, filter_data_by_year
 import datetime
 
@@ -62,3 +67,13 @@ with col2:
         file_name="timeline_data.json",
         mime="application/json",
     )
+
+
+st.divider()  # Visual separator
+st.subheader("🗑️ Manage Timeline Data")
+
+# Button to clear all timeline data
+if st.button("🚨 Clear All Timeline Data", key="clear_data_button"):
+    clear_data_file()  # Call the function to empty the JSON file
+    st.success("Timeline data cleared!")  # Provide user feedback
+    st.experimental_rerun()  # Rerun the app to reflect the empty timeline

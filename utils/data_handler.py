@@ -35,3 +35,11 @@ def export_data_as_csv(data):
 
 def export_data_as_json(data):
     return json.dumps(data, indent=2)
+
+
+def clear_data_file():
+    """
+    Empties the data.json file by writing an empty JSON array to it.
+    """
+    with open(DATA_FILE, "w") as f:
+        f.write("[]")  # Write an empty JSON array to clear the file
