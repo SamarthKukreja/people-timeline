@@ -1,4 +1,5 @@
 import streamlit as st
+from streamlit_js_eval import streamlit_js_eval
 
 st.set_page_config(page_title="Famous People Timeline", layout="wide")
 
@@ -76,4 +77,4 @@ st.subheader("🗑️ Manage Timeline Data")
 if st.button("🚨 Clear All Timeline Data", key="clear_data_button"):
     clear_data_file()  # Call the function to empty the JSON file
     st.success("Timeline data cleared!")  # Provide user feedback
-    st.experimental_rerun()  # Rerun the app to reflect the empty timeline
+    streamlit_js_eval(js_expressions="parent.window.location.reload()")
